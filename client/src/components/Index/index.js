@@ -7,7 +7,7 @@ const Index = (props) => (
   <div>
     <p>操作を選択してください</p>
     <div>
-      <Link to="/" className="nk_button">
+      <Link to="/checklists" className="nk_button">
         チェックリスト確認
       </Link>
       <Link to="/" className="nk_button">
