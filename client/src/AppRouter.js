@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./reset.css";
-import "./nk.css";
+import "./nk.scss";
 
 import Index from "./components/Index";
 import Checklists from "./components/Checklists";
