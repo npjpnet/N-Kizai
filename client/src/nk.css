@@ -57,3 +57,24 @@
   color: #555555;
   font-size: 0.8em;
 }
+.nk_equipCard_control {
+  text-align: right;
+}
+
+.nk_equipCard_control_confirm,
+.nk_equipCard_control_clear {
+  color: #ffffff;
+  font-size: 1.25em;
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+.nk_equipCard_control_confirm {
+  background-color: #00b600;
+}
+.nk_equipCard_control_clear {
+  margin-left: 10px;
+  background-color: #b60000;
+}

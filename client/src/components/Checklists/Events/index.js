@@ -24,19 +24,37 @@ const Index = (props) => (
           <div className="nk_equipCard_title">
             ATEM Mini Pro<span className="nk_equipCard_code">TK-0001</span>
           </div>
-          <div className="nk_equipCard_control">確認 取消</div>
+          <div className="nk_equipCard_control">
+            <button className="nk_equipCard_control_confirm">確認</button>
+            <button className="nk_equipCard_control_clear">取消</button>
+          </div>
         </div>
         <div className="nk_equipCard">
           <div className="nk_equipCard_title">
             ATEM Mini Pro<span className="nk_equipCard_code">TK-0001</span>
           </div>
-          <div className="nk_equipCard_control">確認 取消</div>
+          <div className="nk_equipCard_control">
+            <button className="nk_equipCard_control_confirm">確認</button>
+            <button className="nk_equipCard_control_clear">取消</button>
+          </div>
         </div>
         <div className="nk_equipCard">
           <div className="nk_equipCard_title">
             ATEM Mini Pro<span className="nk_equipCard_code">TK-0001</span>
           </div>
-          <div className="nk_equipCard_control">確認 取消</div>
+          <div className="nk_equipCard_control">
+            <button className="nk_equipCard_control_confirm">確認</button>
+            <button className="nk_equipCard_control_clear">取消</button>
+          </div>
+        </div>
+        <div className="nk_equipCard">
+          <div className="nk_equipCard_title">
+            ATEM Mini Pro<span className="nk_equipCard_code">TK-0001</span>
+          </div>
+          <div className="nk_equipCard_control">
+            <button className="nk_equipCard_control_confirm">確認</button>
+            <button className="nk_equipCard_control_clear">取消</button>
+          </div>
         </div>
       </div>
     </div>
