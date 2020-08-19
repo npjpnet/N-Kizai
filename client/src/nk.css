@@ -1,0 +1,27 @@
+.nk_button,
+.nk_select {
+  margin-bottom: 5px;
+}
+
+.nk_button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+
+  color: #111111;
+  background-color: #cccccc;
+  box-shadow: 0 1px #a0a0a0;
+
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.nk_select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.25em;
+  border-radius: 5px;
+}
