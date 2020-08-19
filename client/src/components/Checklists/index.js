@@ -1,15 +1,17 @@
 import React from "react";
-
-import "./index.css";
+import { Link } from "react-router-dom";
 
 const Index = (props) => (
   <div>
     <p>イベントを選択してください</p>
     <div>
-      <select className="nk_select">
+      <select className="nk nk_select">
         <option value="myfes2020">マイフェス2020</option>
       </select>
-      <button className="nk_button">送信</button>
+      {/* <button className="nk nk_button">送信</button> */}
+      <Link to="/checklists/myfes2020" className="nk nk_button">
+        送信
+      </Link>
     </div>
   </div>
 );
