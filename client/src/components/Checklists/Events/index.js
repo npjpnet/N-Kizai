@@ -18,7 +18,15 @@ const Index = (props) => (
           取消
         </label>
       </span>
-      <input className="nk nk_input" type="text" placeholder="個体コード" />
+      <input
+        className="nk nk_input"
+        type="text"
+        placeholder="個体コード"
+        onKeyPress={(e) => {
+          if (e.which !== 13) return;
+          alert("うんち");
+        }}
+      />
     </div>
     <div>
       <div className="nk_cardContainer">
