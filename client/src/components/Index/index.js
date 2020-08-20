@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import pkg from "./../../../package.json";
+
 const Index = (props) => (
   <div>
-    <p>操作を選択してください</p>
+    <p>
+      N-Kizai v{pkg.version}
+      <br />
+      操作を選択してください
+    </p>
     <div>
       <Link to="/checklists" className="nk nk_button">
         チェックリスト確認
@@ -16,6 +22,9 @@ const Index = (props) => (
       </Link>
       <Link to="/" className="nk nk_button">
         個体登録
+      </Link>
+      <Link to="/" className="nk nk_button">
+        ログアウト
       </Link>
     </div>
   </div>
