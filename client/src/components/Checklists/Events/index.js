@@ -55,6 +55,12 @@ const reservedItems = [
 
 const Index = (props) => {
   const [items, setItems] = useState(reservedItems);
+  const [searchText, setSearchText] = useState("");
+
+  const searchItem = (code) => {
+    const result = items.filter((i) => i.code === code);
+    console.log(result);
+  };
 
   const checkItem = (id) => {
     regenerateList(id);
@@ -86,9 +92,13 @@ const Index = (props) => {
           className="nk nk_input"
           type="text"
           placeholder="個体コード"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           onKeyPress={(e) => {
             if (e.which !== 13) return;
-            alert("うんち");
+            searchItem(searchText);
+            alert(searchText);
+            setSearchText("");
           }}
         />
       </div>
