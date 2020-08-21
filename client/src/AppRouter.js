@@ -7,7 +7,7 @@ import "./nk.scss";
 import pkg from "./../package.json";
 
 import Index from "./components/Index";
-import Login from "./components/Index/login";
+// import Login from "./components/Index/login";
 import Checklists from "./components/Checklists";
 import EventChecklists from "./components/Checklists/Events";
 
