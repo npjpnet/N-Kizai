@@ -56,20 +56,37 @@ const reservedItems = [
 const Index = (props) => {
   const [items, setItems] = useState(reservedItems);
   const [searchText, setSearchText] = useState("");
+  const [operationMode, setOperationMode] = useState({
+    check: true,
+    remove: false,
+  });
 
   const searchItem = (code) => {
+    if (!code) return;
+
     const result = items.filter((i) => i.code === code);
-    console.log(result);
+    if (result.length === 0) {
+      alert(`個体コード ${code} の備品が見つかりませんでした`);
+      return;
+    }
+
+    if (operationMode.check) {
+      checkItem(code);
+      alert(`個体コード ${code} を確認しました。`);
+    } else if (operationMode.remove) {
+      removeItem(code);
+      alert(`個体コード ${code} を削除しました。`);
+    }
   };
 
-  const checkItem = (id) => {
-    regenerateList(id);
+  const checkItem = (code) => {
+    regenerateList(code);
   };
-  const removeItem = (id) => {
-    regenerateList(id);
+  const removeItem = (code) => {
+    regenerateList(code);
   };
-  const regenerateList = (id) => {
-    setItems(items.filter((i) => i.id !== id));
+  const regenerateList = (code) => {
+    setItems(items.filter((i) => i.code !== code));
   };
 
   return (
@@ -77,14 +94,26 @@ const Index = (props) => {
       <p>マイフェス2020 機材チェックリスト</p>
       <div className="nk">
         <span className="nk_radioGroup">
-          <input id="checkRadio" type="radio" name="operation" checked />
-          <label className="nk_label" for="checkRadio">
+          <input
+            id="checkRadio"
+            type="radio"
+            name="operation"
+            checked={operationMode.check}
+            onChange={() => setOperationMode({ check: true, remove: false })}
+          />
+          <label className="nk_label" htmlFor="checkRadio">
             確認
           </label>
         </span>
         <span className="nk_radioGroup">
-          <input id="clearRadio" type="radio" name="operation" />
-          <label className="nk_label" for="clearRadio">
+          <input
+            id="removeRadio"
+            type="radio"
+            name="operation"
+            checked={operationMode.remove}
+            onChange={() => setOperationMode({ check: false, remove: true })}
+          />
+          <label className="nk_label" htmlFor="removeRadio">
             取消
           </label>
         </span>
@@ -97,7 +126,6 @@ const Index = (props) => {
           onKeyPress={(e) => {
             if (e.which !== 13) return;
             searchItem(searchText);
-            alert(searchText);
             setSearchText("");
           }}
         />
@@ -106,11 +134,11 @@ const Index = (props) => {
         <div className="nk_cardContainer">
           {items.map((i) => (
             <EquipCard
-              key={i.id}
+              key={i.code}
               title={i.name}
               code={i.code}
-              checkItem={() => checkItem(i.id)}
-              removeItem={() => removeItem(i.id)}
+              checkItem={() => checkItem(i.code)}
+              removeItem={() => removeItem(i.code)}
             />
           ))}
         </div>
