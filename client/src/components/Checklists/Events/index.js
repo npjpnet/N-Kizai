@@ -137,6 +137,7 @@ const Index = (props) => {
               key={i.code}
               title={i.name}
               code={i.code}
+              remarks={i.remarks}
               checkItem={() => checkItem(i.code)}
               removeItem={() => removeItem(i.code)}
             />

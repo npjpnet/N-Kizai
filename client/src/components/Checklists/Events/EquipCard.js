@@ -6,6 +6,7 @@ export default (props) => (
       {props.title}
       <span className="nk_card_code">{props.code}</span>
     </div>
+    <div className="nk_card_content">{props.remarks}</div>
     <div className="nk_card_control">
       <button
         className="nk_button nk_button-inline nk_button-danger"
