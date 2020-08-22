@@ -1,16 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import "./reset.css";
-import "./nk.scss";
+import './reset.css';
+import './nk.scss';
 
-import pkg from "./../package.json";
+import pkg from './../package.json';
 
-import Index from "./components/Index";
+import Index from './components/Index';
 // import Login from "./components/Index/login";
-import Checklists from "./components/Checklists";
-import EventChecklists from "./components/Checklists/Events";
-import AddProducts from "./components/Devices/addProducts";
+import Checklists from './components/Checklists';
+import EventChecklists from './components/Checklists/Events';
+import AddProducts from './components/Devices/addProducts';
 // import AddDevices from "./components/Devices/addDevices";
 
 const AppRouter = (props) => (

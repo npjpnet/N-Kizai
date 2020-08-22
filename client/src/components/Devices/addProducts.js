@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const AddProduct = (props) => {
   const [form, setForm] = useState({
-    genre: "",
-    name: "",
-    maker: "",
-    serialNumber: "",
-    accessories: "",
+    genre: '',
+    name: '',
+    maker: '',
+    serialNumber: '',
+    accessories: '',
     purchase: {
-      date: "",
-      place: "",
-      price: "",
+      date: '',
+      place: '',
+      price: '',
     },
-    remarks: "",
+    remarks: '',
   });
   return (
     <div>

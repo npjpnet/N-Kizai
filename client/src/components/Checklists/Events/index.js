@@ -1,61 +1,61 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import EquipCard from "./EquipCard";
+import EquipCard from './EquipCard';
 
 const reservedItems = [
   {
-    id: "1",
-    code: "NKNW-0001",
-    name: "配信機材",
-    remarks: "本部用",
-    category: "BROADCAST",
+    id: '1',
+    code: 'NKNW-0001',
+    name: '配信機材',
+    remarks: '本部用',
+    category: 'BROADCAST',
     status: null,
   },
   {
-    id: "24",
-    code: "NKNW-0024",
-    name: "カメラ",
-    remarks: "本部用",
-    category: "OFFICE",
+    id: '24',
+    code: 'NKNW-0024',
+    name: 'カメラ',
+    remarks: '本部用',
+    category: 'OFFICE',
     status: null,
   },
   {
-    id: "43",
-    code: "NW-0002",
-    name: "パソコン",
-    remarks: "配信用",
-    category: "BROADCAST",
+    id: '43',
+    code: 'NW-0002',
+    name: 'パソコン',
+    remarks: '配信用',
+    category: 'BROADCAST',
     status: null,
   },
   {
-    id: "54",
-    code: "NP-0001",
-    name: "ミキサ",
-    remarks: "配信用",
-    category: "BROADCAST",
+    id: '54',
+    code: 'NP-0001',
+    name: 'ミキサ',
+    remarks: '配信用',
+    category: 'BROADCAST',
     status: null,
   },
   {
-    id: "5",
-    code: "NKNW-0005",
-    name: "LANケーブル",
-    remarks: "配信用",
-    category: "BROADCAST",
+    id: '5',
+    code: 'NKNW-0005',
+    name: 'LANケーブル',
+    remarks: '配信用',
+    category: 'BROADCAST',
     status: null,
   },
   {
-    id: "164",
-    code: "NKNP-0006",
-    name: "フォンケーブル",
-    remarks: "配信用",
-    category: "BROADCAST",
+    id: '164',
+    code: 'NKNP-0006',
+    name: 'フォンケーブル',
+    remarks: '配信用',
+    category: 'BROADCAST',
     status: null,
   },
 ];
 
 const Index = (props) => {
   const [items, setItems] = useState(reservedItems);
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const [operationMode, setOperationMode] = useState({
     check: true,
     remove: false,
@@ -126,7 +126,7 @@ const Index = (props) => {
           onKeyPress={(e) => {
             if (e.which !== 13) return;
             searchItem(searchText);
-            setSearchText("");
+            setSearchText('');
           }}
         />
       </div>
