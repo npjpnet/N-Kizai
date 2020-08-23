@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const AddProduct = (props) => {
   const [form, setForm] = useState({
+    prefix: '',
     genre: '',
     name: '',
     maker: '',
@@ -33,6 +34,13 @@ const AddProduct = (props) => {
             <option value="transpotation">運搬用品</option>
             <option value="other">その他</option>
           </select>
+          <input
+            type="text"
+            className="nk nk_input"
+            placeholder="個体コード接頭辞"
+            value={form.prefix}
+            onChange={(e) => setForm({ ...form, prefix: e.target.value })}
+          />
           <input
             type="text"
             className="nk nk_input"
