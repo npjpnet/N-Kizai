@@ -34,13 +34,21 @@ const AddProduct = (props) => {
             <option value="transpotation">運搬用品</option>
             <option value="other">その他</option>
           </select>
-          <input
-            type="text"
-            className="nk nk_input"
-            placeholder="個体コード接頭辞"
+          <select
+            className="nk nk_select"
             value={form.prefix}
             onChange={(e) => setForm({ ...form, prefix: e.target.value })}
-          />
+          >
+            <option value="">備品の管理者を選択してください</option>
+            <option value="NP">NP : N-Point 本部(主犯)</option>
+            <option value="TN">TN : Tearai Net(tearaikazuki)</option>
+            <option value="UN">UN : 嬉野ネットワークサービス(notoken)</option>
+            <option value="NW">NW : ねいろわーく(染宮ねいろ)</option>
+            <option value="MN">MN : 三村ネットワークサービス(Latte)</option>
+            <option value="AG">AG : アジェンダチーム(えりおるん)</option>
+            <option value="MA">MA : にぐとめあれ</option>
+            <option value="AJ">AJ : アジョッタ</option>
+          </select>
           <input
             type="text"
             className="nk nk_input"
