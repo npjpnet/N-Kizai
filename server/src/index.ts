@@ -153,6 +153,11 @@ class Kizai {
       '/products/search',
       [body('genre').isIn(GENRE)],
       async (req: Express.Request, res: Express.Response) => {
+        const errors = validationResult(req).array();
+        if (errors) {
+          return res.status(429);
+        }
+
         const products = await this.core.findProducts({
           genre: req.body.genre,
         });
