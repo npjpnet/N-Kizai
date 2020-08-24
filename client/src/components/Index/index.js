@@ -8,7 +8,7 @@ const Index = (props) => (
       <Link to="/checklists" className="nk nk_button">
         チェックリスト確認
       </Link>
-      <Link to="/" className="nk nk_button">
+      <Link to="/reservations" className="nk nk_button">
         予約作成
       </Link>
       <Link to="/devices/add-products" className="nk nk_button">
