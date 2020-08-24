@@ -135,7 +135,7 @@ const Index = (props) => {
           {items.map((i) => (
             <EquipCard
               key={i.code}
-              title={i.name}
+              name={i.name}
               code={i.code}
               remarks={i.remarks}
               checkItem={() => checkItem(i.code)}

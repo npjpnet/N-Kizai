@@ -12,6 +12,7 @@ import Checklists from './components/Checklists';
 import EventChecklists from './components/Checklists/Events';
 import AddProducts from './components/Devices/addProducts';
 // import AddDevices from "./components/Devices/addDevices";
+import AddReservations from './components/Reservations';
 
 const AppRouter = (props) => (
   <div>
@@ -34,6 +35,8 @@ const AppRouter = (props) => (
 
         <Route exact path="/devices/add-products" component={AddProducts} />
         {/* <Route exact path="/devices/add-devices" component={AddDevices} /> */}
+
+        <Route exact path="/reservations" component={AddReservations} />
       </div>
     </Router>
   </div>
