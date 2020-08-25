@@ -61,49 +61,42 @@ class Kizai {
   private _addProductRoute() {
     this.app.post(
       '/products',
-      [
-        body('prefix').isIn(PREFIX),
-        body('genre').isIn(GENRE),
-        body('name').not().isEmpty(),
-        body('maker').not().isEmpty(),
-        body('productId').isAlphanumeric(),
-        body('serialNumber'),
-        body('accessories'),
-        body('remarks'),
-      ],
+      // [
+      //   body('prefix').isIn(PREFIX),
+      //   body('genre').isIn(GENRE),
+      //   body('name').not().isEmpty(),
+      //   body('maker').not().isEmpty(),
+      //   body('productId').isAlphanumeric(),
+      //   // body('serialNumber'),
+      //   // body('accessories'),
+      //   // body('remarks'),
+      // ],
       async (req: Express.Request, res: Express.Response) => {
-        const errors = validationResult(req).array();
-        if (errors) {
-          return res.status(429);
-        }
-
-        const [
-          genre,
-          name,
-          maker,
-          serialNumber,
-          accessories,
-          remarks,
-          prefix,
-        ] = req.body;
+        // const errors = validationResult(req).array();
+        // if (errors) {
+        //   return res.status(429);
+        // }
 
         const productId = await this.core.addProduct({
-          genre,
-          name,
-          maker,
+          genre: req.body.genre,
+          name: req.body.name,
+          maker: req.body.maker,
         });
         const deviceId = await this.core.addDevice({
           productId: productId.toHexString(),
-          serialNumber: serialNumber,
-          accessories: accessories,
-          remarks: remarks,
+          serialNumber: req.body.serialNumber,
+          accessories: req.body.accessories,
+          remarks: req.body.remarks,
         });
 
+        const latestDevice = await this.core.latestDevice();
+        console.log(latestDevice);
         const code = this._generateDeviceCode(
-          prefix,
-          await this.core.countDevices()
+          req.body.prefix,
+          latestDevice.numberId
         );
-        this.core.fetchDeviceCode(deviceId.id.toHexString(), code);
+        console.log(code);
+        this.core.fetchDeviceCode(deviceId.toHexString(), code);
         return res.json({ productId, code });
       }
     );
@@ -138,14 +131,16 @@ class Kizai {
           prefix,
           await this.core.countDevices()
         );
-        this.core.fetchDeviceCode(deviceId.id.toHexString(), code);
+        this.core.fetchDeviceCode(deviceId.toHexString(), code);
         return res.json({ code });
       }
     );
   }
 
-  private _generateDeviceCode(prefix: string, count: number): string {
-    return `${prefix}-${('0000' + count).slice(-4)}`;
+  private _generateDeviceCode(prefix: string, id: number | undefined): string {
+    return `${prefix}-${('0000' + (id ? id : this.core.countDevices())).slice(
+      -4
+    )}`;
   }
 
   private _searchDevicesRoute() {

@@ -16,6 +16,7 @@ export type Device = {
   remarks: string;
   status: string;
   code: string | null;
+  numberId?: number;
 };
 
 export class DB {
@@ -66,14 +67,24 @@ export class DB {
     serialNumber: string;
     accessories: string;
     remarks: string;
-  }): Promise<{ id: Mongo.ObjectId; count: number }> {
+  }): Promise<Mongo.ObjectId> {
     const result = await this.db
       .collection<Device>('devices')
       .insertOne({ ...o, status: 'ready', code: null })
       .catch((err) => {
         throw err;
       });
-    return { id: result.insertedId, count: result.insertedCount };
+    this._fetchDeviceId(result.insertedId, await this.countDevices());
+    return result.insertedId;
+  }
+
+  private _fetchDeviceId(id: Mongo.ObjectId, count: number): void {
+    this.db
+      .collection<Device>('devices')
+      .updateOne({ _id: id }, { $set: { numberId: count } })
+      .catch((err) => {
+        throw err;
+      });
   }
 
   fetchDeviceCode(id: string, code: string): void {
@@ -91,7 +102,6 @@ export class DB {
   }
 
   async findDevicesByProductId(id: Mongo.ObjectId): Promise<Device[]> {
-    // console.log(id);
     const devices = await this.db
       .collection<Device>('devices')
       .find({ productId: id.toHexString() })
@@ -100,7 +110,20 @@ export class DB {
   }
 
   async countDevices(): Promise<number> {
-    const devices = await this.db.collection('devices').find({}).toArray();
+    const devices = await this.db
+      .collection<Device>('devices')
+      .find({})
+      .toArray();
     return devices.length;
+  }
+
+  async latestDevice(): Promise<Device> {
+    const device = await this.db
+      .collection<Device>('devices')
+      .find()
+      .sort({ _id: -1 })
+      .limit(1)
+      .toArray();
+    return device[0];
   }
 }
