@@ -90,12 +90,10 @@ class Kizai {
         });
 
         const latestDevice = await this.core.latestDevice();
-        console.log(latestDevice);
         const code = this._generateDeviceCode(
           req.body.prefix,
           latestDevice.numberId
         );
-        console.log(code);
         this.core.fetchDeviceCode(deviceId.toHexString(), code);
         return res.json({ productId, code });
       }
