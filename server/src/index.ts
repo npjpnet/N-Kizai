@@ -5,12 +5,12 @@ import Express from 'express';
 import bodyParser from 'body-parser';
 import { param, body, validationResult } from 'express-validator';
 
-import { Product, Device, DB } from './libs/core';
+import { Product, Device, Genre, DB } from './libs/core';
 
 const PORT = 53894;
 const PREFIX = ['NP', 'TN', 'UN', 'NW', 'MN', 'MA', 'AG', 'AJ'];
 
-const GENRE = [
+const GENRE: Genre[] = [
   'broadcast',
   'pa',
   'venue',

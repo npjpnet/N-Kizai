@@ -1,9 +1,19 @@
 import Mongo from 'mongodb';
 // import moment from 'moment';
 
+export type Genre =
+  | 'broadcast'
+  | 'pa'
+  | 'venue'
+  | 'pr'
+  | 'transpotation'
+  | 'communication'
+  | 'oa'
+  | 'other';
+
 export type Product = {
   _id: Mongo.ObjectId;
-  genre: string;
+  genre: Genre;
   name: string;
   maker: string;
 };
@@ -106,7 +116,7 @@ export class DB {
       });
   }
 
-  async findProducts(o: { genre?: string }): Promise<Product[]> {
+  async findProducts(o: { genre?: Genre }): Promise<Product[]> {
     const products = this.db.collection<Product>('products').find(o);
     return products.toArray();
   }
