@@ -43,6 +43,8 @@ class Kizai {
     this._addProductRoute();
     this._addDeviceRoute();
 
+    this._addReservationRoute();
+
     this.core.start();
     this.app.listen(PORT, () => console.log(`Port ${PORT} listening...`));
   }
@@ -135,6 +137,18 @@ class Kizai {
     );
   }
 
+  private _addReservationRoute() {
+    this.app.post(
+      '/reservations/:eventCode',
+      async (req: Express.Request, res: Express.Response) => {
+        const reservationId = await this.core.addReservation({
+          eventCode: req.params.eventCode,
+          devices: req.body.devices,
+        });
+        return res.json({ reservationId });
+      }
+    );
+  }
   private _generateDeviceCode(prefix: string, id: number | undefined): string {
     return `${prefix}-${('0000' + (id ? id : this.core.countDevices())).slice(
       -4

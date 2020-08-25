@@ -19,6 +19,16 @@ export type Device = {
   numberId?: number;
 };
 
+export type Reservation = {
+  _id: Mongo.ObjectId;
+  eventCode: string;
+  devices: {
+    code: string;
+    remarks: string;
+    status: string;
+  }[];
+};
+
 export class DB {
   private db!: Mongo.Db;
 
@@ -125,5 +135,19 @@ export class DB {
       .limit(1)
       .toArray();
     return device[0];
+  }
+
+  async addReservation(o: {
+    eventCode: string;
+    devices: { code: string; remarks: string }[];
+  }): Promise<Mongo.ObjectId> {
+    const devices = o.devices.map((i) => ({ ...i, status: '' }));
+    const result = await this.db
+      .collection<Reservation>('reservations')
+      .insertOne({ ...o, devices })
+      .catch((err) => {
+        throw err;
+      });
+    return result.insertedId;
   }
 }
