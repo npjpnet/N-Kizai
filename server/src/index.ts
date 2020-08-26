@@ -158,29 +158,33 @@ class Kizai {
   private _searchDevicesRoute() {
     this.app.post(
       '/products/search',
-      [body('genre').isIn(GENRE)],
+      // [body('searchText')],
       async (req: Express.Request, res: Express.Response) => {
-        const errors = validationResult(req).array();
-        if (errors) {
-          return res.status(429);
-        }
+        // const errors = validationResult(req).array();
+        // if (errors) {
+        //   return res.status(429);
+        // }
 
-        const products = await this.core.findProducts({
-          genre: req.body.genre,
-        });
+        const products = await this.core.omniProductsSearch(
+          req.body.searchText
+        );
+        // console.log(products);
         const result = await Promise.all(
           products.map(async (product: Product) => {
             const devices = await this.core.findDevicesByProductId(product._id);
-            return devices.map((device: Device) => {
-              return {
-                code: device.code,
-                name: product.name,
-                maker: product.maker,
-                serialNumber: device.serialNumber,
-                status: device.status,
-                remarks: device.remarks,
-              };
-            });
+            return {
+              name: product.name,
+              maker: product.maker,
+              genre: product.genre,
+              devices: devices.map((device: Device) => {
+                return {
+                  code: device.code,
+                  serialNumber: device.serialNumber,
+                  status: device.status,
+                  remarks: device.remarks,
+                };
+              }),
+            };
           })
         );
         return res.json(result);

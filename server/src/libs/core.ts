@@ -1,4 +1,5 @@
 import Mongo from 'mongodb';
+import { generateKeyPair } from 'crypto';
 // import moment from 'moment';
 
 export type Genre =
@@ -9,11 +10,12 @@ export type Genre =
   | 'transpotation'
   | 'communication'
   | 'oa'
-  | 'other';
+  | 'other'
+  | undefined;
 
 export type Product = {
   _id: Mongo.ObjectId;
-  genre: Genre;
+  genre: Genre | string;
   name: string;
   maker: string;
 };
@@ -159,5 +161,15 @@ export class DB {
         throw err;
       });
     return result.insertedId;
+  }
+
+  async omniProductsSearch(searchText: string): Promise<Product[]> {
+    const query = new RegExp(searchText);
+    return await this.db
+      .collection<Product>('products')
+      .find({
+        $or: [{ name: query }, { maker: query }, { genre: query }],
+      })
+      .toArray();
   }
 }
