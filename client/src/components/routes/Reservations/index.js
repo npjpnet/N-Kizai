@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import Core from './../../../libs/n-kizai';
+
 import EquipCard from './EquipCard';
+
+const core = new Core();
 
 const searchedProducts = [
   {
@@ -89,6 +93,11 @@ const AddProduct = (props) => {
       />
     ));
 
+  const EventsSelector = (props) =>
+    core
+      .getEvents()
+      .map((event) => <option value={event.slug}>{event.name}</option>);
+
   return (
     <div>
       <p>機材の使用予約を行います。</p>
@@ -96,7 +105,7 @@ const AddProduct = (props) => {
         <form>
           <select className="nk nk_select">
             <option value="">イベントを選択してください</option>
-            <option value="myfes2020">マイフェス2020</option>
+            <EventsSelector />
           </select>
           <input
             type="text"

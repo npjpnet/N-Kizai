@@ -6,13 +6,13 @@ import './nk.scss';
 
 import pkg from './../package.json';
 
-import Index from './components/Index';
-// import Login from "./components/Index/login";
-import Checklists from './components/Checklists';
-import EventChecklists from './components/Checklists/Events';
-import AddProducts from './components/Devices/addProducts';
-// import AddDevices from "./components/Devices/addDevices";
-import AddReservations from './components/Reservations';
+import Index from './components/routes/Index';
+// import Login from "./components/routes/Index/login";
+import Checklists from './components/routes/Checklists';
+import EventChecklists from './components/routes/Checklists/Events';
+import AddProducts from './components/routes/Devices/addProducts';
+// import AddDevices from "./components/routes/Devices/addDevices";
+import AddReservations from './components/routes/Reservations';
 
 const AppRouter = (props) => (
   <div>
