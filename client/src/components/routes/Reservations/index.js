@@ -59,11 +59,14 @@ const AddProduct = (props) => {
     ));
 
   const addDevice = (code, remarks) => {
-    const existList = selectedDevices.filter((device) => device.code === code);
-    if (existList.length !== 0) return;
-
     const device = devicesList.filter((device) => device.code === code)[0];
     if (!device) return;
+
+    const existList = selectedDevices.filter((device) => device.code === code);
+    if (existList.length !== 0) {
+      alert(`${device.name}(${device.code}) は既に追加済みです。`);
+      return;
+    }
 
     setSelectedDevice([
       ...selectedDevices,
