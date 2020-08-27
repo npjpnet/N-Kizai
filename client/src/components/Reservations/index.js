@@ -69,7 +69,7 @@ const AddProduct = (props) => {
         remarks: remarks,
       },
     ]);
-    setDevicesList(devicesList.filter((device) => device.code !== code));
+    // setDevicesList(devicesList.filter((device) => device.code !== code));
     setSelectDeviceCode('');
     setRemarksText('');
   };
