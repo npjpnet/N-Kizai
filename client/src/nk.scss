@@ -1,3 +1,15 @@
+h2 {
+  margin-bottom: 5px;
+  font-size: 1.75em;
+}
+.container {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .nk {
   display: inline-block;
   width: 100%;
@@ -80,7 +92,7 @@
   &_radioGroup {
     margin-left: 10px;
 
-    & input[type="radio"] {
+    & input[type='radio'] {
       margin-right: 5px;
     }
 
