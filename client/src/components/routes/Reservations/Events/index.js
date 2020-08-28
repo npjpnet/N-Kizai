@@ -94,7 +94,7 @@ const AddProduct = (props) => {
 
   return (
     <div>
-      <p>機材の使用予約を行います。</p>
+      <p>機材の使用予約を行います</p>
       <div className="container">
         <form>
           <input

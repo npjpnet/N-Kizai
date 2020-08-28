@@ -12,7 +12,7 @@ import Index from './components/routes/Index';
 import Checklists from './components/routes/Checklists';
 import EventChecklists from './components/routes/Checklists/Events';
 
-import SearchProducts from './components/routes/Products/search';
+import SearchProducts from './components/routes/Products/Search';
 import AddProduct from './components/routes/Products/add';
 import ProductInfo from './components/routes/Products/info';
 
