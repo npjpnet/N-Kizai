@@ -12,7 +12,8 @@ import Checklists from './components/routes/Checklists';
 import EventChecklists from './components/routes/Checklists/Events';
 import AddProducts from './components/routes/Devices/addProducts';
 // import AddDevices from "./components/routes/Devices/addDevices";
-import AddReservations from './components/routes/Reservations';
+import Reservations from './components/routes/Reservations';
+import EventReservations from './components/routes/Reservations/Events';
 
 const AppRouter = (props) => (
   <div>
@@ -36,7 +37,12 @@ const AppRouter = (props) => (
         <Route exact path="/devices/add-products" component={AddProducts} />
         {/* <Route exact path="/devices/add-devices" component={AddDevices} /> */}
 
-        <Route exact path="/reservations" component={AddReservations} />
+        <Route exact path="/reservations" component={Reservations} />
+        <Route
+          exact
+          path="/reservations/:eventSulg"
+          component={EventReservations}
+        />
       </div>
     </Router>
   </div>
