@@ -1,25 +1,51 @@
 import React, { useState } from 'react';
 
+const defaultData = {
+  prefix: '',
+  genre: '',
+  name: '',
+  maker: '',
+  serialNumber: '',
+  accessories: '',
+  purchase: {
+    date: '',
+    place: '',
+    price: '',
+  },
+  remarks: '',
+};
+
 const AddProduct = (props) => {
-  const [form, setForm] = useState({
-    prefix: '',
-    genre: '',
-    name: '',
-    maker: '',
-    serialNumber: '',
-    accessories: '',
-    purchase: {
-      date: '',
-      place: '',
-      price: '',
-    },
-    remarks: '',
-  });
+  const [form, setForm] = useState(defaultData);
+  const [productId, setProductId] = useState('');
+
   return (
     <div>
       <p>機材を登録します。</p>
       <div>
+        {productId && (
+          <div className="container">
+            <button
+              type="button"
+              className="nk nk_button nk_button-danger"
+              onClick={() => {
+                setForm(defaultData);
+                setProductId('');
+              }}
+            >
+              入力内容をクリア
+            </button>
+          </div>
+        )}
+
         <form>
+          <input
+            type="text"
+            className="nk nk_input"
+            placeholder="機材ID(自動入力)"
+            value={productId}
+            disabled="true"
+          />
           <select
             className="nk nk_select"
             value={form.genre}
@@ -125,7 +151,11 @@ const AddProduct = (props) => {
             }
           />
 
-          <button type="button" className="nk nk_button">
+          <button
+            type="button"
+            className="nk nk_button nk_button-success"
+            onClick={() => setProductId('5f464ee25410e3231058e73a')}
+          >
             登録
           </button>
         </form>
