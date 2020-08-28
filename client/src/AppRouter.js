@@ -8,10 +8,14 @@ import pkg from './../package.json';
 
 import Index from './components/routes/Index';
 // import Login from "./components/routes/Index/login";
+
 import Checklists from './components/routes/Checklists';
 import EventChecklists from './components/routes/Checklists/Events';
-import AddProducts from './components/routes/Devices/addProducts';
+
+import AddProduct from './components/routes/Products/add';
 // import AddDevices from "./components/routes/Devices/addDevices";
+import ProductInfo from './components/routes/Products/info';
+
 import Reservations from './components/routes/Reservations';
 import EventReservations from './components/routes/Reservations/Events';
 
@@ -34,8 +38,8 @@ const AppRouter = (props) => (
           component={EventChecklists}
         />
 
-        <Route exact path="/devices/add-products" component={AddProducts} />
-        {/* <Route exact path="/devices/add-devices" component={AddDevices} /> */}
+        <Route exact path="/products/add" component={AddProduct} />
+        <Route exact path="/products/:productId" component={ProductInfo} />
 
         <Route exact path="/reservations" component={Reservations} />
         <Route
