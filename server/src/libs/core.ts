@@ -28,6 +28,7 @@ export type Device = {
   remarks: string;
   status: string;
   code: string | null;
+  jan?: string;
   numberId?: number;
 };
 
@@ -89,6 +90,7 @@ export class DB {
     serialNumber: string;
     accessories: string;
     remarks: string;
+    jan: string;
   }): Promise<Mongo.ObjectId> {
     const result = await this.db
       .collection<Device>('devices')

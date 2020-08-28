@@ -79,23 +79,32 @@ class Kizai {
         //   return res.status(429);
         // }
 
+        const [
+          genre,
+          name,
+          maker,
+          serialNumber,
+          accessories,
+          remarks,
+          prefix,
+          jan,
+        ] = req.body;
+
         const productId = await this.core.addProduct({
-          genre: req.body.genre,
-          name: req.body.name,
-          maker: req.body.maker,
+          genre,
+          name,
+          maker,
         });
         const deviceId = await this.core.addDevice({
           productId: productId.toHexString(),
-          serialNumber: req.body.serialNumber,
-          accessories: req.body.accessories,
-          remarks: req.body.remarks,
+          serialNumber,
+          accessories,
+          remarks,
+          jan,
         });
 
         const latestDevice = await this.core.latestDevice();
-        const code = this._generateDeviceCode(
-          req.body.prefix,
-          latestDevice.numberId
-        );
+        const code = this._generateDeviceCode(prefix, latestDevice.numberId);
         this.core.fetchDeviceCode(deviceId.toHexString(), code);
         return res.json({ productId, code });
       }
@@ -105,32 +114,31 @@ class Kizai {
   private _addDeviceRoute() {
     this.app.post(
       '/products/:productId',
-      [
-        param('productId').isAlphanumeric(),
-        body('prefix').isIn(PREFIX),
-        body('serialNumber'),
-        body('accessories'),
-        body('remarks'),
-      ],
+      // [
+      //   param('productId').isAlphanumeric(),
+      //   body('prefix').isIn(PREFIX),
+      //   body('serialNumber'),
+      //   body('accessories'),
+      //   body('remarks'),
+      // ],
       async (req: Express.Request, res: Express.Response) => {
-        const errors = validationResult(req).array();
-        if (errors) {
-          return res.status(429);
-        }
+        // const errors = validationResult(req).array();
+        // if (errors) {
+        //   return res.status(429);
+        // }
 
-        const [serialNumber, accessories, remarks, prefix] = req.body;
+        const [serialNumber, accessories, remarks, prefix, jan] = req.body;
 
         const deviceId = await this.core.addDevice({
           productId: req.params.productId,
-          serialNumber: serialNumber,
-          accessories: accessories,
-          remarks: remarks,
+          serialNumber,
+          accessories,
+          remarks,
+          jan,
         });
 
-        const code = this._generateDeviceCode(
-          prefix,
-          await this.core.countDevices()
-        );
+        const latestDevice = await this.core.latestDevice();
+        const code = this._generateDeviceCode(prefix, latestDevice.numberId);
         this.core.fetchDeviceCode(deviceId.toHexString(), code);
         return res.json({ code });
       }
@@ -173,6 +181,7 @@ class Kizai {
           products.map(async (product: Product) => {
             const devices = await this.core.findDevicesByProductId(product._id);
             return {
+              id: product._id,
               name: product.name,
               maker: product.maker,
               genre: product.genre,
