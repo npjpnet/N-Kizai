@@ -1,41 +1,36 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './reset.css';
 import './nk.scss';
-
-import pkg from './../package.json';
 
 import Index from './components/routes/Index';
 // import Login from "./components/routes/Index/login";
 
 import Checklists from './components/routes/Checklists';
-import EventChecklists from './components/routes/Checklists/Events';
+import EventChecklist from './components/routes/Checklists/Events';
+import PrintChecklist from './components/routes/Checklists/Events/print';
 
 import SearchProducts from './components/routes/Products/Search';
 import AddProduct from './components/routes/Products/add';
 import ProductInfo from './components/routes/Products/info';
 
 import Reservations from './components/routes/Reservations';
-import EventReservations from './components/routes/Reservations/Events';
+import EventReservation from './components/routes/Reservations/Events';
 
 const AppRouter = (props) => (
   <div>
     <Router>
       <div>
-        <p>N-Kizai v{pkg.version}</p>
-        <Link className="nk nk_button" to="/">
-          メインメニュー
-        </Link>
-
         <Route exact path="/" component={Index} />
         {/* <Route exact path="/login" component={Login} /> */}
 
         <Route exact path="/checklists" component={Checklists} />
+        <Route exact path="/checklists/:eventSulg" component={EventChecklist} />
         <Route
           exact
-          path="/checklists/:eventSulg"
-          component={EventChecklists}
+          path="/checklists/:eventSlug/print"
+          component={PrintChecklist}
         />
 
         <Route exact path="/products/search" component={SearchProducts} />
@@ -46,7 +41,7 @@ const AppRouter = (props) => (
         <Route
           exact
           path="/reservations/:eventSulg"
-          component={EventReservations}
+          component={EventReservation}
         />
       </div>
     </Router>
