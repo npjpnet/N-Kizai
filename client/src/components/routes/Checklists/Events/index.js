@@ -131,6 +131,7 @@ const Index = (props) => {
         />
       </div>
       <div>
+        <h2>未チェック機材({items.length}件)</h2>
         <div className="nk_cardContainer">
           {items.map((i) => (
             <EquipCard

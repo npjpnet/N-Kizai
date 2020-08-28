@@ -22,7 +22,7 @@ const Index = (props) => {
           <option value="">イベントを選択してください</option>
           <EventsSelector />
         </select>
-        <button className="nk nk_button">送信</button>
+        <button className="nk nk_button nk_button-success">送信</button>
         {/* <Link to="/checklists/myfes2020" className="nk nk_button">
         送信
         </Link> */}

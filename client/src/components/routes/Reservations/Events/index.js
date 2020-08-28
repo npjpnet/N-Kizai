@@ -121,7 +121,7 @@ const AddProduct = (props) => {
           />
           <button
             type="button"
-            className="nk nk_button"
+            className="nk nk_button nk_button-info"
             onClick={() => addDevice(selectDeviceCode, remarksText)}
           >
             予約登録

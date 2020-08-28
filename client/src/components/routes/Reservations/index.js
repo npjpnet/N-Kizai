@@ -24,7 +24,10 @@ const Index = (props) => {
           <EventsSelector />
         </select>
         {/* <button className="nk nk_button">送信</button> */}
-        <Link to="/reservations/myfes2020" className="nk nk_button">
+        <Link
+          to="/reservations/myfes2020"
+          className="nk nk_button nk_button-success"
+        >
           送信
         </Link>
       </div>

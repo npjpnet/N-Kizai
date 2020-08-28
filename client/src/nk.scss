@@ -58,6 +58,15 @@ h2 {
       }
     }
 
+    &-info {
+      color: #ffffff;
+      background-color: #00aa88;
+
+      &:active {
+        background-color: #009888;
+      }
+    }
+
     &-danger {
       color: #ffffff;
       background-color: #e65151;
