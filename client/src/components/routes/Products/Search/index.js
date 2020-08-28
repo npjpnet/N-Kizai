@@ -26,7 +26,7 @@ const searchedProducts = [
 ];
 
 const SearchProducts = (props) => {
-  const [products, setProducts] = useState(searchedProducts);
+  const [products /*, setProducts */] = useState(searchedProducts);
 
   const history = useHistory();
   const pushHistory = (path) => history.push(path);
