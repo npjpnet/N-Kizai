@@ -4,6 +4,7 @@ import EquipCard from './EquipCard';
 
 const searchedProducts = [
   {
+    id: '5f41ff42f12d5a5ec0f783a7',
     name: 'U2C-BF30BK',
     maker: 'エレコム',
     genre: 'pa',
@@ -12,6 +13,7 @@ const searchedProducts = [
     ],
   },
   {
+    id: '5f464ee25410e3231058e73a',
     name: 'T-T02-3650WH/RS',
     maker: 'エレコム',
     genre: 'oa',
@@ -94,7 +96,11 @@ const AddProduct = (props) => {
 
   return (
     <div>
-      <p>機材の使用予約を行います</p>
+      <p>
+        機材の使用予約を行います
+        <br />
+        選択中のイベント : マイフェス2020
+      </p>
       <div className="container">
         <form>
           <input

@@ -91,7 +91,11 @@ const Index = (props) => {
 
   return (
     <div>
-      <p>マイフェス2020 機材チェックリスト</p>
+      <p>
+        機材チェックリスト
+        <br />
+        選択中のイベント : マイフェス2020
+      </p>
       <div className="nk">
         <span className="nk_radioGroup">
           <input
