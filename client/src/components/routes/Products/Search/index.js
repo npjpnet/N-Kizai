@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import EquipCard from './EquipCard';
 
 const searchedProducts = [
   {
+    id: '5f41ff42f12d5a5ec0f783a7',
     name: 'U2C-BF30BK',
     maker: 'エレコム',
     genre: 'pa',
@@ -12,6 +14,7 @@ const searchedProducts = [
     ],
   },
   {
+    id: '5f464ee25410e3231058e73a',
     name: 'T-T02-3650WH/RS',
     maker: 'エレコム',
     genre: 'oa',
@@ -25,11 +28,15 @@ const searchedProducts = [
 const SearchProducts = (props) => {
   const [products, setProducts] = useState(searchedProducts);
 
+  const history = useHistory();
+  const pushHistory = (path) => history.push(path);
+
   const SearchedProducts = (props) =>
     products.map((product) => (
       <EquipCard
         name={product.name}
         remarks={`利用可能 : ${product.devices.length}`}
+        deviceInfo={() => pushHistory(`/products/id/${product.id}`)}
       />
     ));
 

@@ -7,7 +7,7 @@ export default (props) => (
     <div className="nk_card_control">
       <button
         className="nk_button nk_button-inline nk_button-success"
-        // onClick={props.removeItem}
+        onClick={props.deviceInfo}
       >
         情報
       </button>
