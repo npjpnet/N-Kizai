@@ -12,8 +12,8 @@ import Index from './components/routes/Index';
 import Checklists from './components/routes/Checklists';
 import EventChecklists from './components/routes/Checklists/Events';
 
+import SearchProducts from './components/routes/Products/search';
 import AddProduct from './components/routes/Products/add';
-// import AddDevices from "./components/routes/Devices/addDevices";
 import ProductInfo from './components/routes/Products/info';
 
 import Reservations from './components/routes/Reservations';
@@ -38,8 +38,9 @@ const AppRouter = (props) => (
           component={EventChecklists}
         />
 
+        <Route exact path="/products/search" component={SearchProducts} />
         <Route exact path="/products/add" component={AddProduct} />
-        <Route exact path="/products/:productId" component={ProductInfo} />
+        <Route exact path="/products/id/:productId" component={ProductInfo} />
 
         <Route exact path="/reservations" component={Reservations} />
         <Route

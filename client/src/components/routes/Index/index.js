@@ -14,7 +14,7 @@ const Index = (props) => (
       <Link to="/products/add" className="nk nk_button">
         機材登録
       </Link>
-      <Link to="/" className="nk nk_button">
+      <Link to="/products/search" className="nk nk_button">
         機材検索
       </Link>
       <Link to="/" className="nk nk_button">

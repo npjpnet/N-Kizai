@@ -7,11 +7,7 @@ const defaultData = {
   maker: '',
   serialNumber: '',
   accessories: '',
-  purchase: {
-    date: '',
-    place: '',
-    price: '',
-  },
+  jan: '',
   remarks: '',
 };
 
@@ -106,38 +102,9 @@ const AddProduct = (props) => {
           <input
             type="text"
             className="nk nk_input"
-            placeholder="購入日"
-            value={form.purchase.date}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                purchase: { ...form.purchase, date: e.target.value },
-              })
-            }
-          />
-          <input
-            type="text"
-            className="nk nk_input"
-            placeholder="購入場所"
-            value={form.purchase.place}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                purchase: { ...form.purchase, place: e.target.value },
-              })
-            }
-          />
-          <input
-            type="text"
-            className="nk nk_input"
-            placeholder="購入価格"
-            value={form.purchase.price}
-            onChange={(e) =>
-              setForm({
-                ...form,
-                purchase: { ...form.purchase, price: e.target.value },
-              })
-            }
+            placeholder="JANコード"
+            value={form.jan}
+            onChange={(e) => setForm({ ...form, jan: e.target.value })}
           />
           <input
             type="text"
