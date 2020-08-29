@@ -3,7 +3,7 @@ dotenv.config();
 
 import Express from 'express';
 import bodyParser from 'body-parser';
-import { param, body, validationResult } from 'express-validator';
+// import { param, body, validationResult } from 'express-validator';
 
 import { Product, Device, Genre, DB } from './libs/core';
 
