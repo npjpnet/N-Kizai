@@ -1,10 +1,30 @@
 export default class {
   addProducts(product) {
-    return { id: '0123456789ABCDEF' };
+    return {
+      id: '5f41ff42f12d5a5ec0f783a7',
+      name: 'U2C-BF30BK',
+      maker: 'エレコム',
+      genre: 'pa',
+      devices: [
+        { code: 'NP-0014', serialNumber: '', status: 'ready', remarks: '' },
+      ],
+    };
+  }
+
+  getProductById(id) {
+    return {
+      id: '5f41ff42f12d5a5ec0f783a7',
+      name: 'U2C-BF30BK',
+      maker: 'エレコム',
+      genre: 'pa',
+      devices: [
+        { code: 'NP-0014', serialNumber: '', status: 'ready', remarks: '' },
+      ],
+    };
   }
 
   addDeviceByProductId(productId, device) {
-    return { code: 'NW-0334' };
+    return { code: 'NP-0014', serialNumber: '', status: 'ready', remarks: '' };
   }
 
   getEvents() {

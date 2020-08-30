@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import Core from './../../../libs/n-kizai';
+const core = new Core();
+
 const defaultData = {
   prefix: '',
   genre: '',
@@ -13,34 +16,68 @@ const defaultData = {
 
 const AddProduct = (props) => {
   const [form, setForm] = useState(defaultData);
-  const [productId, setProductId] = useState('');
+  const [previousProductId, setPreviousProductId] = useState('');
+
+  const [product, setProduct] = useState({});
+  const [addedDevice, setAddedDevice] = useState({});
+
+  const resetForm = () => {
+    setForm(defaultData);
+    setPreviousProductId('');
+  };
+
+  const addProduct = () => {
+    const product = previousProductId
+      ? core.getProductById(previousProductId)
+      : core.addProducts({
+          name: form.name,
+          genre: form.genre,
+          maker: form.maker,
+        });
+
+    const device = core.addDeviceByProductId(product.id, {
+      prefix: form.prefix,
+      serialNumber: form.serialNumber,
+      accessories: form.accessories,
+      jan: form.jan,
+      remarks: form.remarks,
+    });
+
+    setPreviousProductId(product.id);
+
+    setProduct(product);
+    setAddedDevice(device);
+  };
 
   return (
     <div>
       <p>機材を登録します。</p>
       <div>
-        {productId && (
+        {previousProductId && (
           <div className="container">
             <button
               type="button"
               className="nk nk_button nk_button-danger"
-              onClick={() => {
-                setForm(defaultData);
-                setProductId('');
-              }}
+              onClick={() => resetForm()}
             >
               入力内容をクリア
             </button>
           </div>
         )}
+        {Object.keys(product).length !== 0 &&
+          Object.keys(addedDevice).length !== 0 && (
+            <p>
+              {product.name}({addedDevice.code})を登録しました
+            </p>
+          )}
 
         <form>
           <input
             type="text"
             className="nk nk_input"
             placeholder="機材ID(自動入力)"
-            value={productId}
-            disabled="true"
+            value={product.id}
+            disabled
           />
           <select
             className="nk nk_select"
@@ -121,7 +158,7 @@ const AddProduct = (props) => {
           <button
             type="button"
             className="nk nk_button nk_button-success"
-            onClick={() => setProductId('5f464ee25410e3231058e73a')}
+            onClick={() => addProduct()}
           >
             登録
           </button>
