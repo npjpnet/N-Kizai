@@ -64,14 +64,9 @@ class Kizai {
     this.app.post(
       '/products',
       // [
-      //   body('prefix').isIn(PREFIX),
       //   body('genre').isIn(GENRE),
       //   body('name').not().isEmpty(),
       //   body('maker').not().isEmpty(),
-      //   body('productId').isAlphanumeric(),
-      //   // body('serialNumber'),
-      //   // body('accessories'),
-      //   // body('remarks'),
       // ],
       async (req: Express.Request, res: Express.Response) => {
         // const errors = validationResult(req).array();
@@ -79,34 +74,15 @@ class Kizai {
         //   return res.status(429);
         // }
 
-        const [
-          genre,
-          name,
-          maker,
-          serialNumber,
-          accessories,
-          remarks,
-          prefix,
-          jan,
-        ] = req.body;
+        const [genre, name, maker] = req.body;
 
         const productId = await this.core.addProduct({
           genre,
           name,
           maker,
         });
-        const deviceId = await this.core.addDevice({
-          productId: productId.toHexString(),
-          serialNumber,
-          accessories,
-          remarks,
-          jan,
-        });
 
-        const latestDevice = await this.core.latestDevice();
-        const code = this._generateDeviceCode(prefix, latestDevice.numberId);
-        this.core.fetchDeviceCode(deviceId.toHexString(), code);
-        return res.json({ productId, code });
+        return res.json({ productId });
       }
     );
   }
