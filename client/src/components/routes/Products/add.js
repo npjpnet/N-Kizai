@@ -18,8 +18,8 @@ const AddProduct = (props) => {
   const [form, setForm] = useState(defaultData);
   const [previousProductId, setPreviousProductId] = useState('');
 
-  const [product, setProduct] = useState({});
-  const [addedDevice, setAddedDevice] = useState({});
+  const [product, setProduct] = useState(null);
+  const [addedDevice, setAddedDevice] = useState(null);
 
   const resetForm = () => {
     setForm(defaultData);
@@ -64,19 +64,18 @@ const AddProduct = (props) => {
             </button>
           </div>
         )}
-        {Object.keys(product).length !== 0 &&
-          Object.keys(addedDevice).length !== 0 && (
-            <p>
-              {product.name}({addedDevice.code})を登録しました
-            </p>
-          )}
+        {product && addedDevice !== 0 && (
+          <p>
+            {product.name}({addedDevice.code})を登録しました
+          </p>
+        )}
 
         <form>
           <input
             type="text"
             className="nk nk_input"
             placeholder="機材ID(自動入力)"
-            value={product.id}
+            value={product ? product.id : ''}
             disabled
           />
           <select
