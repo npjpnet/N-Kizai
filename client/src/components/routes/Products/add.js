@@ -64,7 +64,7 @@ const AddProduct = (props) => {
             </button>
           </div>
         )}
-        {product && addedDevice !== 0 && (
+        {product && addedDevice && (
           <p>
             {product.name}({addedDevice.code})を登録しました
           </p>
