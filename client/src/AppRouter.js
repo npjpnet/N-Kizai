@@ -5,7 +5,6 @@ import './reset.css';
 import './nk.scss';
 
 import Index from './components/routes/Index';
-// import Login from "./components/routes/Index/login";
 
 import Checklists from './components/routes/Checklists';
 import EventChecklist from './components/routes/Checklists/Events';
