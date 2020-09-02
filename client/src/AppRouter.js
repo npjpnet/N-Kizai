@@ -12,7 +12,7 @@ import PrintChecklist from './components/routes/Checklists/Events/print';
 
 import SearchProducts from './components/routes/Products/Search';
 import AddProduct from './components/routes/Products/add';
-import ProductInfo from './components/routes/Products/info';
+import ProductInfo from './components/routes/Products/Info';
 
 import Reservations from './components/routes/Reservations';
 import EventReservation from './components/routes/Reservations/Events';
