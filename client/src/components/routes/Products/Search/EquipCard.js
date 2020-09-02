@@ -9,7 +9,7 @@ export default (props) => (
         className="nk_button nk_button-inline nk_button-success"
         onClick={props.deviceInfo}
       >
-        機材譲歩
+        機材情報
       </button>
     </div>
   </div>
