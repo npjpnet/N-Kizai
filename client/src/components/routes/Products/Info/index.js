@@ -9,7 +9,11 @@ const ProductInfo = (props) => {
   const products = core.getProductById('334');
   const Devices = (props) =>
     products.devices.map((device) => (
-      <EquipCard name={device.code} status={device.status} />
+      <EquipCard
+        name={device.code}
+        remarks={device.remarks}
+        status={device.status}
+      />
     ));
 
   return (

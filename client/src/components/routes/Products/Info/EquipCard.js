@@ -10,6 +10,9 @@ export default (props) => (
       </small>
       {props.name}
     </div>
+    <div className="nk_card_content">
+      {props.remarks ? props.remarks : '備考はありません'}
+    </div>
     <div className="nk_card_control">
       {props.status !== 'ready' && (
         <button className="nk_button nk_button-inline nk_button-success">
