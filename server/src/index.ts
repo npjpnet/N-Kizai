@@ -4,6 +4,7 @@ dotenv.config();
 import Express from 'express';
 import bodyParser from 'body-parser';
 // import { param, body, validationResult } from 'express-validator';
+import cors from 'cors';
 
 import { Product, Device, Genre, DB } from './libs/core';
 
@@ -34,6 +35,7 @@ class Kizai {
   }
 
   public start() {
+    this._corsMiddleware();
     this._bodyParserMiddleware();
 
     this._indexRoute();
@@ -47,6 +49,10 @@ class Kizai {
 
     this.core.start();
     this.app.listen(PORT, () => console.log(`Port ${PORT} listening...`));
+  }
+
+  private _corsMiddleware() {
+    this.app.use(cors());
   }
 
   private _bodyParserMiddleware() {

@@ -1,4 +1,26 @@
+import axios from 'axios';
+
 export default class {
+  baseUri;
+
+  constructor() {
+    console.log(process.env.REACT_APP_API_BASE_URI);
+    this.baseUri = process.env.REACT_APP_API_BASE_URI;
+  }
+
+  _get(endpoint) {
+    console.log(this.baseUri + endpoint);
+    return axios.get(this.baseUri + endpoint);
+  }
+
+  _post(endpoint, data) {
+    return axios.post(this.baseUri + endpoint, data);
+  }
+
+  helloWorld() {
+    return this._get('/');
+  }
+
   addProducts(product) {
     return {
       id: '5f41ff42f12d5a5ec0f783a7',
